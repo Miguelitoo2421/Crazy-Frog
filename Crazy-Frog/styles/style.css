@@ -1,0 +1,43 @@
+body{
+    margin: 0;
+    background-color: black;
+}
+#pantalla-inicio{
+    background-color: palegoldenrod;
+}
+#pantalla-game-over{
+    background-color: rgb(212, 122, 53);
+}
+#pantalla-juego{
+    background-color: greenyellow;
+    width: 600px; /* ancho */ 
+    height: 400px; /* alto */
+
+    position: relative;
+    overflow: hidden;
+    user-select: none;
+}
+
+.contenedor{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 50px;
+}
+
+
+
+
+ul.lista-instrucciones {
+    list-style: none; /* Elimina los estilos predeterminados de la lista */
+}
+
+ul.lista-instrucciones li::before {
+    content: '·'; /* Añade el punto personalizado */
+    margin-right: 8px; /* Espacio entre el punto y el texto */
+}
+
+body{
+    font-family: 'Bungee', sans-serif;
+}
