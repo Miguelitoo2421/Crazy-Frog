@@ -8,14 +8,30 @@ body{
 #pantalla-game-over{
     background-color: rgb(212, 122, 53);
 }
-#pantalla-juego{
+#caja-de-juego{
     background-color: greenyellow;
-    width: 600px; /* ancho */ 
-    height: 400px; /* alto */
+    width: 800px; /* ancho */ 
+    height: 600px; /* alto */
 
-    position: relative;
-    overflow: hidden;
-    user-select: none;
+    position: relative; /* nos permite posicionar nuestros elementos de forma absoluta*/
+    overflow: hidden;   /* evitamos que nuestros elementos se salgan de la caja de juegos*/
+    user-select: none;  /* evitamos que nuestros elementos texto puedan ser seleccionados */
+    cursor: crosshair; /* Cambia el cursor para indicar interacción */
+    -webkit-user-drag: none;
+
+    background-image: url("../images/fondo_nuevo.png");
+    background-position: center;
+    background-size: cover; /* ajusta para que cubra el 100% de la caja de juego*/
+}
+
+
+#goGame-btn{
+    background-color: brown;
+    color: rgb(237, 237, 59);
+    padding: 17px;
+    font-size: 20px;
+    margin-top: 40px;
+    border-radius: 10px;
 }
 
 .contenedor{
@@ -25,9 +41,6 @@ body{
     align-items: center;
     margin: 50px;
 }
-
-
-
 
 ul.lista-instrucciones {
     list-style: none; /* Elimina los estilos predeterminados de la lista */
@@ -40,4 +53,10 @@ ul.lista-instrucciones li::before {
 
 body{
     font-family: 'Bungee', sans-serif;
+}
+
+/* ocultamos pantallas para verlas de una en una*/
+
+#pantalla-juego, #pantalla-game-over{
+    display: none;
 }
