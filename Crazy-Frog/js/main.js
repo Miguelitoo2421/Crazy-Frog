@@ -34,8 +34,6 @@ function comenzarJuego(){
   
   //2: añadimos elementos iniciales del juego.
   ranitaObj = new Rana();
-  hojaObj = new Hoja();
-  agregarHoja();
   
 
   //3: iniciar el intervalo del juego.
@@ -48,6 +46,10 @@ function comenzarJuego(){
     agregarHoja();
   },frecuenciaHoja)
 
+  setInterval(()=>{
+    agregarMosca();
+  }, 2000);
+
 }
 
 
@@ -57,14 +59,30 @@ function bucleJuego(){
     cadaHoja.movimientoAutomatico();
   })
 
-  hojasArray2.forEach((cadaHoja2)=>{
-    cadaHoja2.movimientoAutomatico2();
-  })
+  detectarSalidaHoja();
 }
 
 function agregarHoja(){
-  let nuevaHoja = new Hoja();
+  let nuevaHoja = new Hoja(cajaJuegoNode.offsetWidth,60,-1.5);
   hojasArray.push(nuevaHoja)
+
+  let nuevaHojaAbajo = new Hoja(-120,355,1.5);
+  hojasArray.push(nuevaHojaAbajo);
+}
+
+function detectarSalidaHoja(){
+  if(hojasArray.length === 0){
+    return
+  }
+
+  if((hojasArray[0].x + hojasArray[0].w) <= 0){
+    hojasArray[0].node.remove();
+    hojasArray.shift(); // cuando la primera hoja sale del eje x las eliminamos.
+  }
+}
+
+function agregarMosca(){
+  let nuevaMosca = new Mosca();
 }
 
 
@@ -90,11 +108,11 @@ window.addEventListener("keydown",(event)=>{
   }
 })
 
-window.addEventListener("keydown",(event)=>{
-  if(event.key === "s"){
-    ranitaObj.saltoAbajo();
+window.addEventListener("keydown", (event) => {
+  if (event.code === "Space") {
+    ranitaObj.dispararLengua(); // Lanza la lengua al presionar la barra espaciadora
   }
-})
+});
 
 
 

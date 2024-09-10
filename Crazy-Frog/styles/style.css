@@ -19,7 +19,7 @@ body{
     cursor: crosshair; /* Cambia el cursor para indicar interacción */
     -webkit-user-drag: none;
 
-    background-image: url("../images/fondo_nuevo.png");
+    background-image: url("../images/fondo-pantalla-juego.png");
     background-position: center;
     background-size: cover; /* ajusta para que cubra el 100% de la caja de juego*/
 }
