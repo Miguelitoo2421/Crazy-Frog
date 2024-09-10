@@ -15,10 +15,15 @@ const cajaJuegoNode = document.querySelector("#caja-de-juego");
 //* VARIABLES GLOBALES:
 let ranitaObj = null; // iniciamos en null ya que en la pantalla de inico la ranita aun no existe
 let hojaObj = null;
-
+let nuevaMosca = null
 
 let hojasArray = [];
+let lenguasArray = [];
+let moscasArray = [];
+
 let frecuenciaHoja = 3000;
+
+
 
 
 
@@ -52,14 +57,20 @@ function comenzarJuego(){
 
 }
 
-
 function bucleJuego(){
   // esta será la funcion que se ejecute 60 veces por segundo.
   hojasArray.forEach((cadaHoja)=>{
     cadaHoja.movimientoAutomatico();
   })
 
+  lenguasArray.forEach((cadaLengua)=>{
+    cadaLengua.moverLengua();
+    detectarChoqueLenguaMosca(cadaLengua);
+  })
+
   detectarSalidaHoja();
+
+  ranitaObj.gravedadSaltoArriba();
 }
 
 function agregarHoja(){
@@ -82,7 +93,20 @@ function detectarSalidaHoja(){
 }
 
 function agregarMosca(){
-  let nuevaMosca = new Mosca();
+  nuevaMosca = new Mosca();
+  moscasArray.push(nuevaMosca);
+}
+
+function detectarChoqueLenguaMosca(){
+  moscasArray.forEach((cadaMosca) => {
+    const xOverlap = lengua.x < cadaMosca.x + cadaMosca.w && cadaLengua.x + cadaLengua.w > cadaMosca.x;
+    const yOverlap = lengua.y < cadaMosca.y + cadaMosca.h && cadaLengua.y + cadaLengua.h > cadaMosca.y;
+
+    if (xOverlap && yOverlap) {
+      cadaMosca.removeMosca(); // Eliminar la mosca en caso de colisión
+      moscasArray = moscasArray.filter(mosca => mosca !== cadaMosca); // Eliminar la mosca del array
+    }
+  })
 }
 
 
@@ -114,9 +138,4 @@ window.addEventListener("keydown", (event) => {
   }
 });
 
-
-
-
-
-//*PLANIFICACION:
 

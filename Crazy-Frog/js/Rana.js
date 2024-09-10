@@ -6,6 +6,9 @@ class Rana {
     this.w = 105; // ancho.
     this.velocidadSaltoLateral = 50;
     this.velocidadSaltoArriba = 300;
+    this.velocidadGravedad = 4;
+    this.enElAire = false;
+    this.alturaSaltoOriginal = this.y;
 
     // añadir ranita al DOM.
     this.node = document.createElement("img");
@@ -25,7 +28,9 @@ class Rana {
 
   // METODOS PARA NUESTRA RANA.
   saltoArriba() {
-    if(this.lengua) return;
+    if(this.lengua || this.enElAire) return;
+    this.enElAire =  true;
+    this.alturaSaltoOriginal = this.y;
     this.y -= this.velocidadSaltoArriba;
     this.node.style.top = `${this.y}px`;
   }
@@ -57,6 +62,20 @@ class Rana {
           }
         }
       }, 30); // Intervalo para animar la lengua
+    }
+  }
+
+  gravedadSaltoArriba(){
+    if (this.enElAire) {
+      this.y += this.velocidadGravedad;
+      this.node.style.top = `${this.y}px`;
+
+      // Verificar si la rana ha vuelto a su altura original o está por debajo
+      if (this.y >= this.alturaSaltoOriginal) {
+        this.y = this.alturaSaltoOriginal; // Asegúrate de que no se pase de la altura original
+        this.node.style.top = `${this.y}px`;
+        this.enElAire = false; // La rana ya no está en el aire
+      }
     }
   }
 }

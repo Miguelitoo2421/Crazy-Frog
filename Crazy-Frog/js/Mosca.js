@@ -25,9 +25,10 @@ class Mosca {
 
     setTimeout(() => {
       this.removeMosca();
-    }, 5000); // Desaparece después de 3 segundos
+    }, 5000); // Desaparece después de 5 segundos
   }
   removeMosca(){
     this.node.remove();
+    moscasArray = moscasArray.filter(nuevaMosca => nuevaMosca !== this);
   }
 }
