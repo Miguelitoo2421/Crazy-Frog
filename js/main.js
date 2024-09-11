@@ -18,7 +18,6 @@ let hojaObj = null;
 let nuevaMosca = null
 
 let hojasArray = [];
-let lenguasArray = [];
 let moscasArray = [];
 
 let frecuenciaHoja = 3000;
@@ -59,12 +58,11 @@ function bucleJuego(){
     cadaHoja.movimientoAutomatico();
   })
 
-  lenguasArray.forEach((cadaLengua)=>{
-    cadaLengua.moverLengua();
-    detectarChoqueLenguaMosca(cadaLengua);
-  })
-
   detectarSalidaHoja();
+
+  if(ranitaObj.lengua){
+    detectarChoqueLenguaMosca();
+  }
 
   ranitaObj.gravedadSaltoArriba();
 }
@@ -91,18 +89,36 @@ function detectarSalidaHoja(){
 function agregarMosca(){
   nuevaMosca = new Mosca();
   moscasArray.push(nuevaMosca);
+  console.log(moscasArray)
 }
 
 function detectarChoqueLenguaMosca(){
-  moscasArray.forEach((cadaMosca) => {
-    const xOverlap = lengua.x < cadaMosca.x + cadaMosca.w && cadaLengua.x + cadaLengua.w > cadaMosca.x;
-    const yOverlap = lengua.y < cadaMosca.y + cadaMosca.h && cadaLengua.y + cadaLengua.h > cadaMosca.y;
+  if (!ranitaObj.lengua) return;
 
-    if (xOverlap && yOverlap) {
-      cadaMosca.removeMosca(); // Eliminar la mosca en caso de colisión
-      moscasArray = moscasArray.filter(mosca => mosca !== cadaMosca); // Eliminar la mosca del array
+  moscasArray.forEach((cadaMosca) => {
+    const lengua = ranitaObj.lengua;
+    const mosca = cadaMosca;
+
+    const lenguaX1 = lengua.x;
+    const lenguaY1 = lengua.y - lengua.h; // Ajusta según la altura extendida
+    const lenguaX2 = lengua.x + lengua.w;
+    const lenguaY2 = lengua.y;
+
+    const moscaX1 = mosca.x;
+    const moscaY1 = mosca.y;
+    const moscaX2 = mosca.x + mosca.w;
+    const moscaY2 = mosca.y + mosca.h;
+
+    const colisionX = lenguaX1 < moscaX2 && lenguaX2 > moscaX1;
+    const colisionY = lenguaY1 < moscaY2 && lenguaY2 > moscaY1;
+
+    if (colisionX && colisionY) {
+      console.log("lengua dió a mosca");
+
+      cadaMosca.removeMosca();
+      moscasArray = moscasArray.filter(mosca => mosca !== cadaMosca);
     }
-  })
+  });
 }
 
 

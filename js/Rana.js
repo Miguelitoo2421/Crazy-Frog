@@ -21,6 +21,7 @@ class Rana {
     this.node.style.position = "absolute";
     this.node.style.top = `${this.y}px`;
     this.node.style.left = `${this.x}px`;
+    this.node.style.zIndex = "10"
 
     this.lengua = null;
   }
@@ -50,7 +51,7 @@ class Rana {
   dispararLengua() {
     if (!this.lengua) {
       // Crear una lengua solo si no hay una ya activa
-      this.lengua = new Lengua(this.x + this.w / 2 - 5, this.y, 10, 1); // La lengua sale de la cabeza
+      this.lengua = new Lengua(this.x + this.w / 2 - 5, this.y + this.h * 0.9, 10, 1); // La lengua sale de la cabeza
 
       const lenguaInterval = setInterval(() => {
         if (this.lengua) {
