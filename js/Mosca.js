@@ -29,6 +29,5 @@ class Mosca {
   }
   removeMosca(){
     this.node.remove();
-    moscasArray = moscasArray.filter(nuevaMosca => nuevaMosca !== this);
   }
 }

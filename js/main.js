@@ -26,10 +26,6 @@ let frecuenciaHoja = 3000;
 
 
 
-
-
-
-
 //* FUNCIONES GLOBALES:
 
 function comenzarJuego(){
@@ -115,19 +111,19 @@ function detectarChoqueLenguaMosca(){
 botonInicioNode.addEventListener("click", comenzarJuego) // al clickar en GO GAME llamamos a la function comenzar juego.
 
 window.addEventListener("keydown",(event)=>{
-  if(event.key === "w"){
+  if(event.key === "ArrowUp"){
     ranitaObj.saltoArriba();
   }
 })
 
 window.addEventListener("keydown",(event)=>{
-  if(event.key === "d"){
+  if(event.key === "ArrowRight"){
     ranitaObj.saltoDerecha();
   }
 })
 
 window.addEventListener("keydown",(event)=>{
-  if(event.key === "a"){
+  if(event.key === "ArrowLeft"){
     ranitaObj.saltoIzquierda();
   }
 })

@@ -7,8 +7,12 @@ class Lengua {
     this.maxHeight = 150; // Longitud máxima de la lengua (hasta donde se extiende)
     this.speed = 10; // Velocidad a la que se extiende/retrae
 
-    // Crear el elemento visual de la lengua
+
     this.node = document.createElement("div");
+    cajaJuegoNode.append(this.node);
+
+    // Crear el elemento visual de la lengua
+    
     this.node.style.position = "absolute";
     this.node.style.backgroundColor = "red"; // Color de la lengua
     this.node.style.width = `${this.w}px`;
@@ -19,10 +23,9 @@ class Lengua {
     this.node.style.border = "1px solid black";
 
 
-    cajaJuegoNode.append(this.node);
+    
     this.isExtending = true; // Estado inicial: la lengua se extiende
 
-    lenguasArray.push(this);
   }
 
   moverLengua() {
@@ -48,7 +51,5 @@ class Lengua {
 
   removeLengua() {
     this.node.remove(); // Eliminar la lengua del DOM
-
-    lenguasArray = lenguasArray.filter(cadaLengua => cadaLengua !== this);
   }
 }
