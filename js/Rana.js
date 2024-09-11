@@ -1,15 +1,14 @@
 class Rana {
   constructor() {
-    this.x = 380; // posición en eje x (left)
+    this.x = 350; // posición en eje x (left)
     this.y = 500; // posicion en eje y (top)
     this.h = 90; // altura.
     this.w = 105; // ancho.
-    this.velocidadSaltoLateral = 20;
-    this.velocidadSaltoArriba = 250;
-    this.velocidadGravedad = 4;
+    this.velocidadSaltoLateral = 40;
+    this.estaSaltando = false;
+    this.limiteSalto = 85;
+    this.momentoSalto = this.limiteSalto;
     this.enElAire = false;
-    this.alturaSaltoOriginal = this.y;
-    this.alturaMaxSalto = 100;
 
     // añadir ranita al DOM.
     this.node = document.createElement("img");
@@ -22,38 +21,72 @@ class Rana {
     this.node.style.position = "absolute";
     this.node.style.top = `${this.y}px`;
     this.node.style.left = `${this.x}px`;
-    this.node.style.zIndex = "10"
+    this.node.style.zIndex = "10";
 
     this.lengua = null;
   }
 
-
   // METODOS PARA NUESTRA RANA.
-  saltoArriba() {
-      if(this.lengua || this.enElAire) return;
-      this.enElAire =  true;
-      this.alturaSaltoOriginal = this.y;
-      this.y -= this.velocidadSaltoArriba;
+  iniciarSalto() {
+    if (!this.estaSaltando) {
+      this.estaSaltando = true;
+      this.enElAire = true;
+      this.momentoSalto = this.limiteSalto; // Reiniciar el momento del salto
+    }
+  }
+
+  salto() {
+    if (this.estaSaltando) {
+      this.momentoSalto--; // Disminuir el momento del salto
+
+      // Verificar los límites del `game box` (ajusta el tamaño según tu contenedor)
+      const limiteInferior = cajaJuegoNode.offsetHeight - this.h;
+
+      if (this.momentoSalto > this.limiteSalto / 2) {
+        // Movimiento hacia arriba
+        this.y -= 6; // Ajusta la velocidad del salto si es necesario
+        if (this.y < 0) {
+          this.y = 0; // Evitar que la rana suba más allá del borde superior
+        }
+      } else if (this.momentoSalto > 0) {
+        // Movimiento hacia abajo
+        this.y += 6; // Ajusta la velocidad del salto si es necesario
+        if (this.y > limiteInferior) {
+          this.y = limiteInferior; // Evitar que la rana baje más allá del borde inferior
+        }
+      } else {
+        // Finalizar el salto
+        this.estaSaltando = false;
+        this.enElAire = false;
+        this.momentoSalto = this.limiteSalto; // Reiniciar el momento del salto
+      }
+
       this.node.style.top = `${this.y}px`;
+    }
   }
 
   saltoDerecha() {
-    if(this.lengua) return;
+    if (this.lengua || this.enElAire) return;
     this.x += this.velocidadSaltoLateral; // Mueve hacia la derecha
     this.node.style.left = `${this.x}px`;
-     // Actualiza la posición horizontal
+    // Actualiza la posición horizontal
   }
 
   saltoIzquierda() {
-    if(this.lengua) return;
+    if (this.lengua || this.enElAire) return;
     this.x -= this.velocidadSaltoLateral; // Mueve hacia la izquierda
     this.node.style.left = `${this.x}px`; // Actualiza la posición horizontal
   }
 
   dispararLengua() {
     if (!this.lengua) {
-      // Crear una lengua solo si no hay una ya activa
-      this.lengua = new Lengua(this.x + this.w / 2 - 5, this.y + this.h * 0.9, 10, 1); // La lengua sale de la cabeza
+      // creamos la lengua solo si no tenemos una yá activa.
+      this.lengua = new Lengua(
+        this.x + this.w / 2 - 5,
+        this.y + this.h * 0.3,
+        10,
+        1
+      ); // posicion de salida de la lengua.
 
       const lenguaInterval = setInterval(() => {
         if (this.lengua) {
@@ -65,20 +98,6 @@ class Rana {
           }
         }
       }, 30); // Intervalo para animar la lengua
-    }
-  }
-
-  gravedadSaltoArriba(){
-    if (this.enElAire) {
-      this.y += this.velocidadGravedad;
-      this.node.style.top = `${this.y}px`;
-
-      // Verificar si la rana ha vuelto a su altura original o está por debajo
-      if (this.y >= this.alturaSaltoOriginal) {
-        this.y = this.alturaSaltoOriginal; // Asegúrate de que no se pase de la altura original
-        this.node.style.top = `${this.y}px`;
-        this.enElAire = false; // La rana ya no está en el aire
-      }
     }
   }
 }

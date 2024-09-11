@@ -4,8 +4,8 @@ class Lengua {
     this.y = y; // La posición Y de la lengua se inicia desde la cabeza de la rana
     this.w = width; // Ancho inicial de la lengua (podemos hacerlo crecer)
     this.h = height; // Altura de la lengua
-    this.maxHeight = 300; // Longitud máxima de la lengua (hasta donde se extiende)
-    this.speed = 30; // Velocidad a la que se extiende/retrae
+    this.maxHeight = 250; // Longitud máxima de la lengua (hasta donde se extiende)
+    this.speed = 20; // Velocidad a la que se extiende/retrae
     
 
 
@@ -22,9 +22,6 @@ class Lengua {
     this.node.style.left = `${this.x}px`;
     this.node.style.borderRadius = `${this.w / 2}px`;
     this.node.style.border = "1px solid black";
-    
-
-
     
     this.isExtending = true; // Estado inicial: la lengua se extiende
 

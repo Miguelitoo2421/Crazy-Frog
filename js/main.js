@@ -16,6 +16,7 @@ const cajaJuegoNode = document.querySelector("#caja-de-juego");
 let ranitaObj = null; // iniciamos en null ya que en la pantalla de inico la ranita aun no existe
 let hojaObj = null;
 let nuevaMosca = null;
+
 let hojasArray = [];
 let moscasArray = [];
 let frecuenciaHoja = 3000;
@@ -63,10 +64,12 @@ function bucleJuego(){
   detectarSalidaHoja();
 
   if(ranitaObj.lengua){
+    ranitaObj.lengua.x = ranitaObj.x + ranitaObj.w / 2 - 5;
+    ranitaObj.lengua.y = ranitaObj.y + ranitaObj.h * 0.3;
     detectarChoqueLenguaMosca();
   }
 
-  ranitaObj.gravedadSaltoArriba();
+  ranitaObj.salto();
 }
 
 function agregarHoja(){
@@ -116,9 +119,9 @@ function detectarChoqueLenguaMosca(){
     
     if (colisionX && colisionY) {
       moscasAtrapadas ++
-      console.log("lengua dió a mosca");
-
+      // llamar function atrape mosca 
       cadaMosca.removeMosca();
+      console.log(cadaMosca)
       moscasArray = moscasArray.filter(mosca => mosca !== cadaMosca);
     }
 
@@ -126,6 +129,12 @@ function detectarChoqueLenguaMosca(){
       gameOver();
     }
   });
+}
+
+// function(para agregar imagen mosca atrapada)
+function imagenMoscaAplastada(){
+
+
 }
 
 function gameOver(){
@@ -155,7 +164,7 @@ botonInicioNode.addEventListener("click", comenzarJuego) // al clickar en GO GAM
 
 window.addEventListener("keydown",(event)=>{
   if(event.key === "ArrowUp"){
-    ranitaObj.saltoArriba();
+    ranitaObj.iniciarSalto();
   }
 })
 
