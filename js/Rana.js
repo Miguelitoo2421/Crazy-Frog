@@ -4,11 +4,12 @@ class Rana {
     this.y = 500; // posicion en eje y (top)
     this.h = 90; // altura.
     this.w = 105; // ancho.
-    this.velocidadSaltoLateral = 50;
-    this.velocidadSaltoArriba = 300;
+    this.velocidadSaltoLateral = 20;
+    this.velocidadSaltoArriba = 250;
     this.velocidadGravedad = 4;
     this.enElAire = false;
     this.alturaSaltoOriginal = this.y;
+    this.alturaMaxSalto = 100;
 
     // añadir ranita al DOM.
     this.node = document.createElement("img");
@@ -29,17 +30,18 @@ class Rana {
 
   // METODOS PARA NUESTRA RANA.
   saltoArriba() {
-    if(this.lengua || this.enElAire) return;
-    this.enElAire =  true;
-    this.alturaSaltoOriginal = this.y;
-    this.y -= this.velocidadSaltoArriba;
-    this.node.style.top = `${this.y}px`;
+      if(this.lengua || this.enElAire) return;
+      this.enElAire =  true;
+      this.alturaSaltoOriginal = this.y;
+      this.y -= this.velocidadSaltoArriba;
+      this.node.style.top = `${this.y}px`;
   }
 
   saltoDerecha() {
     if(this.lengua) return;
     this.x += this.velocidadSaltoLateral; // Mueve hacia la derecha
-    this.node.style.left = `${this.x}px`; // Actualiza la posición horizontal
+    this.node.style.left = `${this.x}px`;
+     // Actualiza la posición horizontal
   }
 
   saltoIzquierda() {

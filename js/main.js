@@ -15,13 +15,15 @@ const cajaJuegoNode = document.querySelector("#caja-de-juego");
 //* VARIABLES GLOBALES:
 let ranitaObj = null; // iniciamos en null ya que en la pantalla de inico la ranita aun no existe
 let hojaObj = null;
-let nuevaMosca = null
-
+let nuevaMosca = null;
 let hojasArray = [];
 let moscasArray = [];
-
 let frecuenciaHoja = 3000;
+let moscasAtrapadas = 0;
 
+let intervaloBucleJuego = null;
+let intervaloAgregarHoja = null;
+let intervaloAgregarMosca = null;
 
 
 
@@ -37,16 +39,16 @@ function comenzarJuego(){
   
 
   //3: iniciar el intervalo del juego.
-  setInterval(()=>{ // nuestro intervalo ejecuta la funcion bucleJuego 60 veces por segundo.
+  intervaloBucleJuego = setInterval(()=>{ // nuestro intervalo ejecuta la funcion bucleJuego 60 veces por segundo.
     bucleJuego();
   },Math.round(1000/60))
 
   //4: iniciaremos otros intervalos que requiera el juego
-  setInterval(()=>{
+  intervaloAgregarHoja = setInterval(()=>{
     agregarHoja();
   },frecuenciaHoja)
 
-  setInterval(()=>{
+  intervaloAgregarMosca = setInterval(()=>{
     agregarMosca();
   }, 2000);
 
@@ -111,14 +113,39 @@ function detectarChoqueLenguaMosca(){
 
     const colisionX = lenguaX1 < moscaX2 && lenguaX2 > moscaX1;
     const colisionY = lenguaY1 < moscaY2 && lenguaY2 > moscaY1;
-
+    
     if (colisionX && colisionY) {
+      moscasAtrapadas ++
       console.log("lengua dió a mosca");
 
       cadaMosca.removeMosca();
       moscasArray = moscasArray.filter(mosca => mosca !== cadaMosca);
     }
+
+    if(moscasAtrapadas === 5){
+      gameOver();
+    }
   });
+}
+
+function gameOver(){
+  clearInterval(intervaloBucleJuego);
+  clearInterval(intervaloAgregarHoja);
+  clearInterval(intervaloAgregarMosca);
+
+  /* ESTO DEBERIA OCURRIR AL REINICIAR EL JUEGO.
+  cajaJuegoNode.innerHTML = ""
+  ranitaObj = null;
+  nuevaMosca = null;
+  nuevaMosca = null;
+  hojasArray = [];
+  moscasArray = [];
+  */
+
+  pantallaJuegoNode.style.display = "none"
+  pantallaFinalNode.style.display = "flex"
+
+
 }
 
 
