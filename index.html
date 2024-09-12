@@ -12,19 +12,19 @@
 
     <!-- PANTALLA PRINCIPAL -->
     <div id="pantalla-inicio" class="contenedor">
-      <img src="./images/rana_pagina_inicio_480.png" width="400" alt="logo-pantalla-inicio">
-      <img src="./images/hojas_pagina_principal_720.png" width="300" alt="hojas-pantalla-inicio">
+      <img class="rana" src="./images/rana_pagina_inicio_480.png" width="300" alt="logo-pantalla-inicio">
+      <img class="hoja" src="./images/hojas_pagina_principal_720.png" width="400" alt="hojas-pantalla-inicio">
       <h1>Crazy Frog</h1>
       <h2>Retos del Juego</h2>
       <ul class="lista-instrucciones"></ul>
-        <li>Trata de capturar diez moscas, apunta usando el ratón y dispara.</li>
-        <li>No te caigas de las hojas, utiliza las flechas de tu teclado y salta.</li>
-        <li>Cuidadooo !! todo lo anterior con las hojas en movimiento.</li>
+        <li>Captura 10 moscas para ganar.</li>
+        <li>Usa las flechas para moverte y saltar.</li>
+        <li>Lenguetea con barra espaciadora.</li>
       </ul>
-      <button id="goGame-btn">GO GAME!</button>
+      <button id="start-btn">
+        <span>START</span>
+      </button>
     </div>
-
-
 
 
     <!-- PANTALLA DE JUEGO -->
@@ -33,19 +33,20 @@
       </div>
     </div>
 
+    <div id="temporizador">
+      TIME: <span id="tiempo">40</span>
+    </div>
+
 
 
     <!-- PANTALLA FINAL (GAME OVER)-->
     <div id="pantalla-game-over" class="contenedor">
       <h2>CAZA TERMINADA !!!</h2>
-      <p id="moscas-atrapadas">Moscas atrapadas: 0</p>
-      <p id="caidas">Total de veces que caíste: 0</p>
-      <p id="lenguetazos">Lengüetazos al aire: 0</p>
-      <button id="endGame-btn">NEXT GAME</button>
+      <div>
+        <p id="moscas-atrapadas">Moscas atrapadas: <span id="moscas">0</span></p>
+      </div>
+      <button id="endGame-btn">RESTART</button>
     </div>
-
-
-
 
 
   <script src="./js/main.js"></script>

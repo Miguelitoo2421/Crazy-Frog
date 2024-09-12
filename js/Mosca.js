@@ -1,9 +1,10 @@
 class Mosca {
   constructor() {
     
+    const margen = 5;
     const mitadAltura = cajaJuegoNode.offsetHeight / 2;
 
-    this.x = Math.random() * (cajaJuegoNode.offsetWidth - 50); // Posición aleatoria en el eje x
+    this.x = Math.random() * (cajaJuegoNode.offsetWidth - 2 * margen - 50) +margen; // Posición aleatoria en el eje x
     this.y = Math.random() * (mitadAltura - 50); // Posición aleatoria en el eje y
     this.h = 50; // Altura de la mosca
     this.w = 50; // Ancho de la mosca
@@ -25,9 +26,9 @@ class Mosca {
 
     setTimeout(() => {
       this.removeMosca();
-    }, 5000); // Desaparece después de 5 segundos
+    }, 2000); // Desaparece después de 5 segundos
   }
-  removeMosca(){
+    removeMosca(){
     this.node.remove();
   }
 }

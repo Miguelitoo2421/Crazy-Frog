@@ -10,6 +10,9 @@ class Rana {
     this.momentoSalto = this.limiteSalto;
     this.enElAire = false;
 
+    
+    
+
     // añadir ranita al DOM.
     this.node = document.createElement("img");
     this.node.src = "./images/frog_360.png";
@@ -67,14 +70,22 @@ class Rana {
 
   saltoDerecha() {
     if (this.lengua || this.enElAire) return;
+
+    const limiteDerecho = cajaJuegoNode.offsetWidth -this.w;
     this.x += this.velocidadSaltoLateral; // Mueve hacia la derecha
-    this.node.style.left = `${this.x}px`;
-    // Actualiza la posición horizontal
+    if(this.x > limiteDerecho){
+      this.x = limiteDerecho;
+    }
+    this.node.style.left = `${this.x}px`; // Actualiza la posición horizontal
   }
 
   saltoIzquierda() {
     if (this.lengua || this.enElAire) return;
+
     this.x -= this.velocidadSaltoLateral; // Mueve hacia la izquierda
+    if(this.x < 0){
+      this.x = 0;
+    }
     this.node.style.left = `${this.x}px`; // Actualiza la posición horizontal
   }
 
@@ -87,6 +98,7 @@ class Rana {
         10,
         1
       ); // posicion de salida de la lengua.
+      lenguaAlAire.play();
 
       const lenguaInterval = setInterval(() => {
         if (this.lengua) {

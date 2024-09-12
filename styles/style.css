@@ -1,63 +1,228 @@
-body{
-    margin: 0;
-    background-color: black;
-}
-#pantalla-inicio{
-    background-color: palegoldenrod;
-}
-#pantalla-game-over{
-    background-color: rgb(212, 122, 53);
-}
-#caja-de-juego{
-    background-color: greenyellow;
-    width: 800px; /* ancho */ 
-    height: 600px; /* alto */
-
-    position: relative; /* nos permite posicionar nuestros elementos de forma absoluta*/
-    overflow: hidden;   /* evitamos que nuestros elementos se salgan de la caja de juegos*/
-    user-select: none;  /* evitamos que nuestros elementos texto puedan ser seleccionados */
-    cursor: crosshair; /* Cambia el cursor para indicar interacción */
-    -webkit-user-drag: none;
-
-    background-image: url("../images/fondo-pantalla-juego.png");
-    background-position: center;
-    background-size: cover; /* ajusta para que cubra el 100% de la caja de juego*/
+body {
+  margin: 0;
+  background-color: black;
+  /*background-image: url("../images/fondo-pantalla-juego.png");*/
 }
 
-
-#goGame-btn{
-    background-color: brown;
-    color: rgb(237, 237, 59);
-    padding: 17px;
-    font-size: 20px;
-    margin-top: 40px;
-    border-radius: 10px;
+#pantalla-inicio {
+  background-color: palegoldenrod;
+  width: 60%; /* Ajustamos el ancho del contenedor */
+  max-width: 800px; /* Máximo ancho del contenedor */
+  padding: 20px 20px 150px 20px; /* Espacio interno */
+  text-align: center;
+  border-radius: 35px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+  margin: 30px;
+  margin-left: 400px;
+  position: relative;
+  overflow: hidden;
 }
 
-.contenedor{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 50px;
+#pantalla-inicio img.rana {
+  max-width: 100%;
+  height: auto;
+  margin: 15px 0;
+  padding-left: 400px;
+}
+
+#pantalla-inicio img.hoja {
+  padding-right: 300px;
+}
+
+h1 {
+  position: absolute;
+  font-size: 5em;
+  color: #0ab00a;
+  text-shadow: 10px 10px 16px rgba(7, 1, 1, 0.8);
+  top: 40px;
+  left: 50px;
+}
+
+.lista-instrucciones {
+  padding: 0; /* Elimina el padding por defecto */
+  margin: 0; /* Elimina el margin por defecto */
+  text-align: justify; /* Justifica el texto */
+}
+
+.lista-instrucciones li {
+  margin-bottom: 10px; /* Espaciado entre los elementos de la lista */
+}
+
+#pantalla-inicio h2 {
+  color: #0ab00a;
+  bottom: 190px;
+  font-size: 2em;
+  text-shadow: 3px 3px 6px rgba(7, 1, 1, 0.8);
+}
+
+#start-btn {
+  position: absolute;
+  bottom: 50px;
+  left: 42%;
+  z-index: 999;
+  border: 0;
+  background-image: linear-gradient(
+    150deg,
+    #19e30e,
+    rgb(220, 203, 43),
+    #15a315
+  );
+  border-radius: 8px;
+  color: rgb(11, 114, 12);
+  display: flex;
+  font-size: 15px;
+  padding: 4px;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-bottom: 10px;
+}
+#start-btn span {
+  background-color: #4fdc48;
+  padding: 16px 28px;
+  border-radius: 6px;
+  transition: 0.3s;
+  font-family: "Bungee", sans-serif;
+}
+#start-btn:hover span {
+  background-image: linear-gradient(
+    150deg,
+    #e31c0e,
+    rgb(210, 158, 35),
+    #711b10
+  );
+  color: #da1a1d;
+  text-shadow: 0 0 1px #f6f637, 0 0 2px #f6f637, 0 0 3px #f6f637,
+    0 0 4px #f6f637;
+  transform: scale(1.5);
+}
+#start-btn:active {
+  transform: scale(0.5);
+}
+/**/ /**/ /**/ /**/
+
+#pantalla-game-over {
+  background-color: rgb(212, 122, 53);
+  width: 60%; /* Ajustamos el ancho del contenedor */
+  max-width: 800px; /* Máximo ancho del contenedor */
+  padding: 20px 20px 150px 20px; /* Espacio interno */
+  text-align: center;
+  margin: 30px;
+  margin-left: 400px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 35px;
+}
+
+#pantalla-game-over h2 {
+  padding-bottom: 100px;
+  font-size: 3.5em;
+}
+
+#pantalla-game-over div {
+  display: flex;
+  gap: 100px;
+}
+
+#endGame-btn {
+  background-color: black;
+  cursor: pointer;
+  border: none;
+  padding: 20px 20px;
+  color: rgb(9, 10, 3);
+  font-size: 20px;
+  font-weight: bold;
+  position: relative;
+  border-radius: 12px;
+  z-index: 1;
+  font-family: "Bungee", sans-serif;
+  margin-top: 80PX;
+}
+#endGame-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    45deg,
+    rgb(24, 204, 21),
+    rgb(11, 156, 6),
+    rgb(220, 247, 23),
+    rgb(226, 130, 20),
+    red,
+    rgb(15, 209, 109),
+    rgb(120, 32, 5),
+    rgb(12, 224, 79)
+  );
+  background-size: 800%;
+  border-radius: 10px;
+  filter: blur(8px);
+  animation: glowing 20s linear infinite;
+}
+@keyframes glowing {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+/**/ /**/ /**/ /**/
+
+#caja-de-juego {
+  background-color: greenyellow;
+  width: 800px; /* ancho */
+  height: 600px; /* alto */
+
+  position: relative; /* nos permite posicionar nuestros elementos de forma absoluta*/
+  overflow: hidden; /* evitamos que nuestros elementos se salgan de la caja de juegos*/
+  user-select: none; /* evitamos que nuestros elementos texto puedan ser seleccionados */
+  cursor: crosshair; /* Cambia el cursor para indicar interacción */
+  -webkit-user-drag: none;
+
+  background-image: url("../images/fondo-pantalla-juego.png");
+  background-position: center;
+  background-size: cover; /* ajusta para que cubra el 100% de la caja de juego*/
+}
+
+.contenedor {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 50px;
 }
 
 ul.lista-instrucciones {
-    list-style: none; /* Elimina los estilos predeterminados de la lista */
+  list-style: none; /* Elimina los estilos predeterminados de la lista */
 }
 
 ul.lista-instrucciones li::before {
-    content: '·'; /* Añade el punto personalizado */
-    margin-right: 8px; /* Espacio entre el punto y el texto */
+  content: "·"; /* Añade el punto personalizado */
+  margin-right: 8px; /* Espacio entre el punto y el texto */
 }
 
-body{
-    font-family: 'Bungee', sans-serif;
+body {
+  font-family: "Bungee", sans-serif;
 }
 
 /* ocultamos pantallas para verlas de una en una*/
 
-#pantalla-juego, #pantalla-game-over{
-    display: none;
+#pantalla-juego, #pantalla-game-over{/*, #pantalla-game-over */
+  display: none;
 }
 
+#temporizador{
+  position: absolute; 
+  top: 400px; 
+  right: 80px; 
+  font-size: 30px; 
+  color: #fff;
+
+}
