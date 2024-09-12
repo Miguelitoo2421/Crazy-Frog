@@ -1,9 +1,9 @@
 class Rana {
   constructor() {
-    this.x = 350; // posición en eje x (left)
-    this.y = 500; // posicion en eje y (top)
-    this.h = 90; // altura.
-    this.w = 105; // ancho.
+    this.x = 350; 
+    this.y = 500; 
+    this.h = 90; 
+    this.w = 105; 
     this.velocidadSaltoLateral = 40;
     this.estaSaltando = false;
     this.limiteSalto = 85;
@@ -13,7 +13,7 @@ class Rana {
     
     
 
-    // añadir ranita al DOM.
+    // añadimos ranita al DOM.
     this.node = document.createElement("img");
     this.node.src = "./images/frog_360.png";
     cajaJuegoNode.append(this.node);
@@ -29,41 +29,35 @@ class Rana {
     this.lengua = null;
   }
 
-  // METODOS PARA NUESTRA RANA.
   iniciarSalto() {
     if (!this.estaSaltando) {
       this.estaSaltando = true;
       this.enElAire = true;
-      this.momentoSalto = this.limiteSalto; // Reiniciar el momento del salto
+      this.momentoSalto = this.limiteSalto; 
     }
   }
 
   salto() {
     if (this.estaSaltando) {
-      this.momentoSalto--; // Disminuir el momento del salto
+      this.momentoSalto--; 
 
-      // Verificar los límites del `game box` (ajusta el tamaño según tu contenedor)
       const limiteInferior = cajaJuegoNode.offsetHeight - this.h;
-
       if (this.momentoSalto > this.limiteSalto / 2) {
-        // Movimiento hacia arriba
-        this.y -= 6; // Ajusta la velocidad del salto si es necesario
+        
+        this.y -= 6; 
         if (this.y < 0) {
-          this.y = 0; // Evitar que la rana suba más allá del borde superior
+          this.y = 0; 
         }
       } else if (this.momentoSalto > 0) {
-        // Movimiento hacia abajo
-        this.y += 6; // Ajusta la velocidad del salto si es necesario
+        this.y += 6; 
         if (this.y > limiteInferior) {
-          this.y = limiteInferior; // Evitar que la rana baje más allá del borde inferior
+          this.y = limiteInferior; 
         }
       } else {
-        // Finalizar el salto
         this.estaSaltando = false;
         this.enElAire = false;
-        this.momentoSalto = this.limiteSalto; // Reiniciar el momento del salto
+        this.momentoSalto = this.limiteSalto; 
       }
-
       this.node.style.top = `${this.y}px`;
     }
   }
@@ -72,44 +66,42 @@ class Rana {
     if (this.lengua || this.enElAire) return;
 
     const limiteDerecho = cajaJuegoNode.offsetWidth -this.w;
-    this.x += this.velocidadSaltoLateral; // Mueve hacia la derecha
+    this.x += this.velocidadSaltoLateral; 
     if(this.x > limiteDerecho){
       this.x = limiteDerecho;
     }
-    this.node.style.left = `${this.x}px`; // Actualiza la posición horizontal
+    this.node.style.left = `${this.x}px`; 
   }
 
   saltoIzquierda() {
     if (this.lengua || this.enElAire) return;
 
-    this.x -= this.velocidadSaltoLateral; // Mueve hacia la izquierda
+    this.x -= this.velocidadSaltoLateral; 
     if(this.x < 0){
       this.x = 0;
     }
-    this.node.style.left = `${this.x}px`; // Actualiza la posición horizontal
+    this.node.style.left = `${this.x}px`; 
   }
 
   dispararLengua() {
     if (!this.lengua) {
-      // creamos la lengua solo si no tenemos una yá activa.
       this.lengua = new Lengua(
         this.x + this.w / 2 - 5,
         this.y + this.h * 0.3,
         10,
         1
-      ); // posicion de salida de la lengua.
+      );
       lenguaAlAire.play();
 
       const lenguaInterval = setInterval(() => {
         if (this.lengua) {
-          this.lengua.moverLengua(); // Mover la lengua cada intervalo
-          // Si la lengua ya no existe (se retrajo por completo), detener el intervalo
+          this.lengua.moverLengua(); 
           if (this.lengua.h <= 0) {
             clearInterval(lenguaInterval);
-            this.lengua = null; // Resetear la lengua
+            this.lengua = null;
           }
         }
-      }, 30); // Intervalo para animar la lengua
+      }, 30); 
     }
   }
 }

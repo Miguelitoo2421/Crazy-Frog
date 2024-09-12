@@ -13,7 +13,7 @@ const cajaJuegoNode = document.querySelector("#caja-de-juego");
 
 
 //* VARIABLES GLOBALES:
-let ranitaObj = null; // iniciamos en null ya que en la pantalla de inico la ranita aun no existe
+let ranitaObj = null;
 let hojaObj = null;
 let nuevaMosca = null;
 
@@ -29,7 +29,7 @@ let intervaloAgregarMosca = null;
 let teclaDerechaPresionada = false;
 let teclaIzquierdaPresionada = false;
 
-let tiempoRestante = 60; // Tiempo en segundos
+let tiempoRestante = 60; 
 let intervaloTemporizador = null;
 
 const musicaFondo = new Audio("../music/musica_pantano.mp3")
@@ -44,27 +44,26 @@ musicaPaginaFinal.loop = true;
 
 
 
-
 //* FUNCIONES GLOBALES:
 
 function comenzarJuego(){
 
-  //1: cambiamos pantallas.
+  
   setTimeout(()=>{
-    pantallaInicioNode.style.display = "none"; // ocultamos pantalla principal.
+    pantallaInicioNode.style.display = "none"; 
     pantallaJuegoNode.style.display = "flex";
   },300)
   
-  //2: añadimos elementos iniciales del juego.
+  
   ranitaObj = new Rana();
   
 
-  //3: iniciar el intervalo del juego.
-  intervaloBucleJuego = setInterval(()=>{ // nuestro intervalo ejecuta la funcion bucleJuego 60 veces por segundo.
+  
+  intervaloBucleJuego = setInterval(()=>{ 
     bucleJuego();
   },Math.round(1000/60))
 
-  //4: iniciaremos otros intervalos que requiera el juego
+  
   intervaloAgregarHoja = setInterval(()=>{
     agregarHoja();
   },frecuenciaHoja)
@@ -81,7 +80,7 @@ function comenzarJuego(){
 }
 
 function bucleJuego(){
-  // esta será la funcion que se ejecute 60 veces por segundo.
+  
   hojasArray.forEach((cadaHoja)=>{
     cadaHoja.movimientoAutomatico();
   })
@@ -112,7 +111,7 @@ function detectarSalidaHoja(){
 
   if((hojasArray[0].x + hojasArray[0].w) <= 0){
     hojasArray[0].node.remove();
-    hojasArray.shift(); // cuando la primera hoja sale del eje x las eliminamos.
+    hojasArray.shift(); 
   }
 }
 
@@ -134,7 +133,7 @@ function detectarChoqueLenguaMosca(){
     const mosca = cadaMosca;
 
     const lenguaX1 = lengua.x;
-    const lenguaY1 = lengua.y - lengua.h; // Ajusta según la altura extendida
+    const lenguaY1 = lengua.y - lengua.h; 
     const lenguaX2 = lengua.x + lengua.w;
     const lenguaY2 = lengua.y;
 
@@ -148,7 +147,7 @@ function detectarChoqueLenguaMosca(){
     
     if (colisionX && colisionY) {
       moscasAtrapadas ++
-      // llamar function atrape mosca
+      
       moscaAplastada(mosca.x, mosca.y)
 
       cadaMosca.removeMosca();
@@ -194,7 +193,7 @@ function volverAlInicio(){
 
   cajaJuegoNode.innerHTML = ""
 
-  pantallaFinalNode.style.display = "none"; // ocultamos pantalla principal.
+  pantallaFinalNode.style.display = "none"; 
   pantallaInicioNode.style.display = "flex";
   actualizarEstadisticasFinales();
   
@@ -212,13 +211,13 @@ function ganador(){
 }
 
 function actualizarEstadisticasFinales() {
-  // Seleccionamos los elementos span dentro del div
+  
   document.getElementById("moscas").textContent = moscasAtrapadas;
   
 }
 
 function iniciarTemporizador() {
-  tiempoRestante = 40; // Reiniciar el tiempo
+  tiempoRestante = 40; 
   document.getElementById("tiempo").textContent = tiempoRestante;
 
   intervaloTemporizador = setInterval(() => {
@@ -227,14 +226,14 @@ function iniciarTemporizador() {
 
     if (tiempoRestante <= 0) {
       clearInterval(intervaloTemporizador);
-      gameOver(); // Llamar a la función de fin de juego
+      gameOver(); 
     }
-  }, 1000); // Actualizar cada segundo
+  }, 1000); 
 }
 
 function gameOver() {
   musicaPaginaFinal.play();
-  // Detener música y otros intervalos
+  
   musicaFondo.pause();
   musicaFondo.currentTime = 0;
   clearInterval(intervaloBucleJuego);
@@ -246,14 +245,13 @@ function gameOver() {
   pantallaJuegoNode.style.display = "none";
   pantallaFinalNode.style.display = "flex";
 
-  // Actualizar estadísticas finales
+  
   actualizarEstadisticasFinales();
 }
 
 
-
 //* EVENT LISTENERS:
-botonInicioNode.addEventListener("click", comenzarJuego) // al clickar en START llamamos a la function comenzar juego.
+botonInicioNode.addEventListener("click", comenzarJuego) 
 
 window.addEventListener("keydown",(event)=>{
   if(event.key === "ArrowUp"){
@@ -286,7 +284,7 @@ window.addEventListener("keyup", (event) => {
 
 window.addEventListener("keydown", (event) => {
   if (event.code === "Space") {
-    ranitaObj.dispararLengua(); // Lanza la lengua al presionar la barra espaciadora
+    ranitaObj.dispararLengua(); 
   }
 });
 

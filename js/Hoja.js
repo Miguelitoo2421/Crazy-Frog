@@ -1,13 +1,13 @@
 class Hoja {
 
   constructor(posicionX,posicionY,velocidad) {
-    this.x = posicionX; // posición en eje x (left)
-    this.y = posicionY; // posicion en eje y (top)
-    this.h = 200; // altura.
-    this.w = 200; // ancho.
+    this.x = posicionX; 
+    this.y = posicionY; 
+    this.h = 200; 
+    this.w = 200; 
     this.speed = velocidad;
 
-    // añadir cada hoja al DOM.
+    // añadimos Hoja al DOM.
 
     this.node = document.createElement("img");
     this.node.src = "./images/hojas_pagina_principal_720.png";
