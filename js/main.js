@@ -41,7 +41,7 @@ const lenguaAlAire = new Audio("./music/lengua_al_aire.mp3")
 const musicaPaginaFinal = new Audio("./music/musica_pantalla_final.mp3")
 musicaPaginaFinal.loop = true;
 
-const sonidoSobreBoton = new Audio("./music/sonido_boton_inicio.mp3")
+const sonidoSobreBoton = new Audio("../music/sonido_boton_inicio.mp3")
 
 
 //* GLOBAL FUNCTIONS:
