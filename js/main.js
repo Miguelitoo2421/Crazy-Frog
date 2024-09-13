@@ -163,7 +163,7 @@ function detectarChoqueLenguaMosca(){
 
 function moscaAplastada(x,y){
   const impacto = document.createElement("img");
-  impacto.src = "/images/explosion_mosca.png"; 
+  impacto.src = "./images/explosion_mosca.png"; 
   impacto.style.position = "absolute";
   impacto.style.left = `${x}px`;
   impacto.style.top = `${y}px`;
