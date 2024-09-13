@@ -32,14 +32,14 @@ let teclaIzquierdaPresionada = false;
 let tiempoRestante = 60; 
 let intervaloTemporizador = null;
 
-const musicaFondo = new Audio("../music/musica_pantano.mp3")
+const musicaFondo = new Audio("./music/musica_pantano.mp3")
 musicaFondo.loop = true;
 
-const musicaMoscaAtrapada = new Audio("../music/mosca_atrapada.mp3")
+const musicaMoscaAtrapada = new Audio("./music/mosca_atrapada.mp3")
 
-const lenguaAlAire = new Audio("../music/lengua_al_aire.mp3")
+const lenguaAlAire = new Audio("./music/lengua_al_aire.mp3")
 
-const musicaPaginaFinal = new Audio("../music/musica_pantalla_final.mp3")
+const musicaPaginaFinal = new Audio("./music/musica_pantalla_final.mp3")
 musicaPaginaFinal.loop = true;
 
 
