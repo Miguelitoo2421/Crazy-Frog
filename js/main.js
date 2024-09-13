@@ -29,7 +29,7 @@ let intervaloAgregarMosca = null;
 let teclaDerechaPresionada = false;
 let teclaIzquierdaPresionada = false;
 
-let tiempoRestante = 60; 
+let tiempoRestante = 40; 
 let intervaloTemporizador = null;
 
 const musicaFondo = new Audio("./music/musica_pantano.mp3")
@@ -190,13 +190,13 @@ function volverAlInicio(){
   moscasAtrapadas = 0;
   hojasArray = [];
   moscasArray = [];
+  tiempoRestante = 40;
 
   cajaJuegoNode.innerHTML = ""
 
   pantallaFinalNode.style.display = "none"; 
   pantallaInicioNode.style.display = "flex";
   actualizarEstadisticasFinales();
-  
 }
 
 function ganador(){
@@ -208,6 +208,12 @@ function ganador(){
   musicaFondo.currentTime = 0;
 
   actualizarEstadisticasFinales();
+  clearInterval(intervaloTemporizador);
+
+  //tiempoRestante = 40; 
+  //document.getElementById("tiempo").textContent = tiempoRestante;
+
+  
 }
 
 function actualizarEstadisticasFinales() {
@@ -224,7 +230,7 @@ function iniciarTemporizador() {
     tiempoRestante--;
     document.getElementById("tiempo").textContent = tiempoRestante;
 
-    if (tiempoRestante <= 0) {
+    if (tiempoRestante === 0) {
       clearInterval(intervaloTemporizador);
       gameOver(); 
     }

@@ -16,6 +16,7 @@ body {
   margin-left: 400px;
   position: relative;
   overflow: hidden;
+  height: 490px;
 }
 
 #pantalla-inicio img.rana {
@@ -27,6 +28,8 @@ body {
 
 #pantalla-inicio img.hoja {
   padding-right: 300px;
+  width: 300px;
+  height: auto;
 }
 
 h1 {
@@ -57,7 +60,7 @@ h1 {
 
 #start-btn {
   position: absolute;
-  bottom: 50px;
+  bottom: 30px;
   left: 42%;
   z-index: 999;
   border: 0;
@@ -125,6 +128,16 @@ h1 {
   gap: 100px;
 }
 
+#pantalla-game-over p{
+  font-size: 30px;
+}
+
+#pantalla-game-over span{
+  color: #e0150e;
+  font-size: 40px;
+  background-clip: text;
+}
+
 #endGame-btn {
   background-color: black;
   cursor: pointer;
@@ -180,7 +193,7 @@ h1 {
 #caja-de-juego {
   background-color: greenyellow;
   width: 800px; 
-  height: 600px; 
+  height: 590px; 
 
   position: relative; 
   overflow: hidden; 
@@ -214,13 +227,13 @@ body {
   font-family: "Bungee", sans-serif;
 }
 
-#pantalla-juego, #pantalla-game-over{
+#pantalla-juego ,#pantalla-game-over{
   display: none;
 }
 
 #temporizador{
   position: absolute; 
-  top: 400px; 
+  top: 300px; 
   right: 80px; 
   font-size: 30px; 
   color: #fff;
