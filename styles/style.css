@@ -116,6 +116,7 @@ h1 {
   position: relative;
   overflow: hidden;
   border-radius: 35px;
+  height: 480px;
 }
 
 #pantalla-game-over h2 {

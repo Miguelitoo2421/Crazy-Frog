@@ -1,4 +1,4 @@
-//* ELEMENTOS DOM:
+//* DOM ELEMENT:
 
 //! PANTALLAS:
 const pantallaInicioNode = document.querySelector("#pantalla-inicio");
@@ -11,8 +11,7 @@ const botonReinicioNode = document.querySelector("#endGame-btn");
 const cajaJuegoNode = document.querySelector("#caja-de-juego"); 
 
 
-
-//* VARIABLES GLOBALES:
+//* GLOBAL VARIABLES:
 let ranitaObj = null;
 let hojaObj = null;
 let nuevaMosca = null;
@@ -29,7 +28,7 @@ let intervaloAgregarMosca = null;
 let teclaDerechaPresionada = false;
 let teclaIzquierdaPresionada = false;
 
-let tiempoRestante = 40; 
+let tiempoRestante = 35; 
 let intervaloTemporizador = null;
 
 const musicaFondo = new Audio("./music/musica_pantano.mp3")
@@ -45,8 +44,7 @@ musicaPaginaFinal.loop = true;
 const sonidoSobreBoton = new Audio("./music/sonido_boton_inicio.mp3")
 
 
-
-//* FUNCIONES GLOBALES:
+//* GLOBAL FUNCTIONS:
 
 function comenzarJuego(){
 
@@ -229,7 +227,7 @@ function actualizarEstadisticasFinales() {
 }
 
 function iniciarTemporizador() {
-  tiempoRestante = 40; 
+  tiempoRestante = 35; 
   document.getElementById("tiempo").textContent = tiempoRestante;
 
   intervaloTemporizador = setInterval(() => {
