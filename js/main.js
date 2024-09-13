@@ -42,6 +42,8 @@ const lenguaAlAire = new Audio("./music/lengua_al_aire.mp3")
 const musicaPaginaFinal = new Audio("./music/musica_pantalla_final.mp3")
 musicaPaginaFinal.loop = true;
 
+const sonidoSobreBoton = new Audio("./music/sonido_boton_inicio.mp3")
+
 
 
 //* FUNCIONES GLOBALES:
@@ -68,7 +70,11 @@ function comenzarJuego(){
     agregarHoja();
   },frecuenciaHoja)
 
-  musicaFondo.play();
+  setTimeout(()=>{
+    musicaFondo.play();
+  },2000)
+
+  
 
   intervaloAgregarMosca = setInterval(()=>{
     agregarMosca();
@@ -257,7 +263,11 @@ function gameOver() {
 
 
 //* EVENT LISTENERS:
-botonInicioNode.addEventListener("click", comenzarJuego) 
+botonInicioNode.addEventListener("click", comenzarJuego)
+
+botonInicioNode.addEventListener("mouseover", ()=>{
+  sonidoSobreBoton.play();
+})
 
 window.addEventListener("keydown",(event)=>{
   if(event.key === "ArrowUp"){
